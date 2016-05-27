@@ -150,8 +150,6 @@ exports.socket_Lamps = function(){
   });
 
   client.on('lamp_All', function(lamps){
-    var valorCheck = lamps.lamp_all_conect;
-    console.log("Logico "+valorCheck);
     console.log("Servidor " + lamps);
 
     if(lamps == "lampBathroom"){

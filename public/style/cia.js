@@ -23,6 +23,25 @@ socket.on('connect', function(data) {
       roomOne = data.lampRoomOne;
     data.lampRoomTwo == 0 ? statusLampOff("lamp2Sala") : statusLampOn("lamp2Sala");
       roomTwo = data.lampRoomTwo;
+    if(data.lamp_all_conect == 0){
+      connection_lamp_all = 0;
+      valorCheck = 0;
+      statusLampOff("lampbathroom");
+      statusLampOff("lampkitchen");
+      statusLampOff("lampbedroom");
+      statusLampOff("lamp2Sala");
+      statusLampOff("lamp1Sala");
+      status();
+    }else if(data.lamp_all_conect == 5){
+      connection_lamp_all = 5;
+      valorCheck = 1;
+      statusLampOn("lampbathroom");
+      statusLampOn("lampkitchen");
+      statusLampOn("lampbedroom");
+      statusLampOn("lamp2Sala");
+      statusLampOn("lamp1Sala");
+      status();
+    }
     console.log(data);
  });
 });
@@ -38,11 +57,8 @@ socket.on('lamp_All', function(lamps) {
     acenderLamproomOne();
  }else if (lamps == "lampRoomTwo"){
     acenderLamproomTwo();
- }else if(lamps.All_msg == "lamp_All_Home"){
-    valorCheck = lamps.lamp_all_conect;
-    console.log(valorCheck);
+ }else if(lamps == "lamp_All_Home"){
     controlAllLamps();
-    status();
  }
 });
 
@@ -183,11 +199,11 @@ function controlAllLamps() {
         roomTwo = 0;
         connection_lamp_all = 0;
     }
+    status();
 }
 
 function sendLamp_All(){
-  socket.emit('lamp_All',"lamp_All_Home"
-  });
+  socket.emit('lamp_All',"lamp_All_Home");
 }
 
 //FUNCAO CORTINA
