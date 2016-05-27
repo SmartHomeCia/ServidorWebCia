@@ -291,7 +291,8 @@ AQAAeNpjYGBgZACCY6nbT4Honcof58JoAFBcB4IAAA==) format('woff'), url('HelveticaNeue
   font-style: normal;
 }
 body{
-font-family: 'HelveticaNeueLTStd-Lt' !important;
+	font-weight: normal;
+
 }
 
 

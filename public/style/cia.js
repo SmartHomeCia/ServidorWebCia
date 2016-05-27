@@ -160,9 +160,11 @@ function sendLampRoomTwo(){
 function status() {
     if (connection_lamp_all == 5) {
       document.getElementById("cmn-toggle-2").checked = true;
+      valorCheck = 1;
     } else if (connection_lamp_all < 5) {
       var checkStatus = document.getElementById("cmn-toggle-2").checked;
       if (checkStatus == true) {
+        valorCheck = 0;
         document.getElementById("cmn-toggle-2").checked = false;
       }
     }
@@ -171,33 +173,19 @@ function status() {
 //FUNÇAO DE TODAS AS LAMPADAS
 function controlAllLamps() {
     if (valorCheck == 0) {
-        valorCheck = 1;
         statusLampOn("lampbathroom");
         statusLampOn("lampkitchen");
         statusLampOn("lampbedroom");
         statusLampOn("lamp2Sala");
         statusLampOn("lamp1Sala");
-
-        bathroom = 1;
-        kitchen = 1;
-        bedroom = 1;
-        roomOne = 1;
-        roomTwo = 1;
-        connection_lamp_all = 5;
+        modifyLamps(1,5);
     }else {
-        valorCheck = 0;
         statusLampOff("lampbathroom");
         statusLampOff("lampkitchen");
         statusLampOff("lampbedroom");
         statusLampOff("lamp2Sala");
         statusLampOff("lamp1Sala");
-
-        bathroom = 0;
-        kitchen = 0;
-        bedroom = 0;
-        roomOne = 0;
-        roomTwo = 0;
-        connection_lamp_all = 0;
+        modifyLamps(0,0);
     }
     status();
 }
@@ -206,26 +194,39 @@ function sendLamp_All(){
   socket.emit('lamp_All',"lamp_All_Home");
 }
 
+function modifyLamps(un_lamp,un_all_lamp){
+  bathroom = un_lamp;
+  kitchen = un_lamp;
+  bedroom = un_lamp;
+  roomOne = un_lamp;
+  roomTwo = un_lamp;
+  valorCheck = un_lamp;
+  connection_lamp_all = un_all_lamp;
+  console.log(un_lamp + " - " + un_all_lamp);
+}
+
+
+
 //FUNCAO CORTINA
 function activeCurtain() {
-    if (statusCurtain == 0) {
-      document.getElementById("curtain_img").src = "img/cortina-aberta.png";
-      statusCurtain = 1;
-    } else {
-      document.getElementById("curtain_img").src = "img/cortina-fechada.png";
-      statusCurtain = 0;
-    }
+  if (statusCurtain == 0) {
+    document.getElementById("curtain_img").src = "img/cortina-aberta.png";
+    statusCurtain = 1;
+  } else {
+    document.getElementById("curtain_img").src = "img/cortina-fechada.png";
+    statusCurtain = 0;
+  }
 }
 
 function acaoBtn() {
-    btntvimg = document.getElementById('tv_img');
-    if (tv === 0) {
-      tv = 1;
-      btntvimg.src = "img/tvligada.png";
-    } else {
-      tv = 0;
-      btntvimg.src = "img/tvdesligada.png";
-    }
+  btntvimg = document.getElementById('tv_img');
+  if (tv === 0) {
+    tv = 1;
+    btntvimg.src = "img/tvligada.png";
+ } else {
+    tv = 0;
+    btntvimg.src = "img/tvdesligada.png";
+  }
 }
 
 function statusLampOff(idLampOffimg){
@@ -233,5 +234,5 @@ function statusLampOff(idLampOffimg){
 }
 
 function statusLampOn(idLampOnimg) {
-    document.getElementById(idLampOnimg).src = "img/ledligada.png";
+  document.getElementById(idLampOnimg).src = "img/ledligada.png";
 }

@@ -9,33 +9,21 @@ var All_lampsStatus = "";
 
 exports.control_lampAll = function(){
   if(connection_lamp_all === 0){
-    connection_lamp_all = 1;
     //app.sensors.relay_kitchen.digitalWrite(0);
     //app.sensors.relay_bathroom.digitalWrite(0);
     //app.sensors.relay_room.digitalWrite(0);
     //app.sensors.relay_roomTwo.digitalWrite(0);
     //app.sensors.relay_bedroom.digitalWrite(0);
-    bathroom = 1;
-    kitchen = 1;
-    roomOne = 1;
-    roomTwo = 1;
-    bedroom = 1;
-    controlAll_lamp = 5;
+    modifyLamps(1,5);
     console.log("Todas " + controlAll_lamp);
   } else {
-    connection_lamp_all = 0;
     /*app.sensors.relay_kitchen.digitalWrite(1);
     app.sensors.relay_bathroom.digitalWrite(1);
     app.sensors.relay_room.digitalWrite(1);
     app.sensors.relay_roomTwo.digitalWrite(1);
     app.sensors.relay_bedroom.digitalWrite(1);
     */
-    bathroom = 0;
-    kitchen = 0;
-    roomOne = 0;
-    roomTwo = 0;
-    bedroom = 0;
-    controlAll_lamp = 0;
+    modifyLamps(0,0);
     console.log("Todas " + controlAll_lamp);
   }
   All_lampsStatus = "lamp_All_Home";
@@ -136,6 +124,16 @@ function statusLamps(){
     connection_lamp_all = 0;
   }
 };
+
+function modifyLamps(lamp,all_lamp){
+  connection_lamp_all = lamp;
+  bathroom = lamp;
+  kitchen = lamp;
+  roomOne = lamp;
+  roomTwo = lamp;
+  bedroom = lamp;
+  controlAll_lamp = all_lamp;
+}
 
 exports.socket_Lamps = function(){
   socket.on('connect', function (client) {
