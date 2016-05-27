@@ -48,7 +48,7 @@
                    <div class="row">
                       <div class="switch">
                         <input id="cmn-toggle-2" class="cmn-toggle cmn-toggle-round" type="checkbox" 
-                        onclick="controlAllLamps()" ng-click="toggle_relay_connect_all()">
+                        onclick="controlAllLamps(); sendLamp_All();">
                         <label for="cmn-toggle-2"></label>
                         <span>Todas</span>
                       </div>
@@ -57,51 +57,54 @@
             </div>
             <div class="modal-body">
             <!--CAMPO BANHEIRO - LAMPADA-->
-            <article class="campo_funcionalidade" title="Banheiro - Lampada">
+            <article class="campo_funcionalidade cursor" title="Banheiro - Lampada" 
+            onclick="acenderLampBathroom(); sendLampBathroom();">
               <figure class="lampada1">
                 <label class="label-button"><span>Banheiro</span></label>
-                <img class="cursor image" id="lampbathroom" data-loading-text="Aguarde..." 
-                src="img/leddesligada.png" onclick="acenderLampBathroom(); sendLampBathroom();"><!--ng-click="toggle_relay_bathroom()"-->
+                <img class="image" id="lampbathroom" data-loading-text="Aguarde..." src="img/leddesligada.png">
                 <figcaption>
                 </figcaption>
                </figure>
             </article>
               <!--CAMPO COZINHA - LAMPADA-->
-            <article class="campo_funcionalidade" title="Lampada Cozinha">
+            <article class="campo_funcionalidade cursor" title="Lampada Cozinha"
+               onclick="acenderLampkitchen(); sendLampKitchen();">
               <figure class="lampada1">
                   <label class="label-button"><span>Cozinha</span></label>
-                  <img class="cursor" id="lampkitchen" src="img/leddesligada.png" data-loading-text="Aguarde..." onclick="acenderLampkitchen()">
+                  <img class="cursor" id="lampkitchen" src="img/leddesligada.png" data-loading-text="Aguarde...">
                 <figcaption>
                  
                 </figcaption>
               </figure>
             </article>
               <!--CAMPO QUARTO - LAMPADA-->
-            <article class="campo_funcionalidade" title="Quarto - Lampada">
+            <article class="campo_funcionalidade cursor" title="Quarto - Lampada" 
+            onclick="acenderLampbedroom(); sendLampBedroom();">
               <figure class="lampada1">
                  <label class="label-button"><span>Quarto</span></label>
-                 <img class="cursor" id="lampbedroom" src="img/leddesligada.png" data-loading-text="Aguarde..." onclick="acenderLampbedroom()" 
-                 >
+                 <img id="lampbedroom" src="img/leddesligada.png" data-loading-text="Aguarde...">
                <figcaption>
                  
                </figcaption>
               </figure>
             </article>
             <!--CAMPO SALA - LAMPADA 1-->
-            <article class="campo_funcionalidade" title="SALA - Lampada 1">
+            <article class="campo_funcionalidade cursor" title="SALA - Lampada 1" 
+            onclick="acenderLamproomOne(); sendLampRoomOne();">
               <figure class="lampada1">
                 <label class="label-button"><span>Sala 1º</span></label>
-                <img class="cursor" id="lamp1Sala" src="img/leddesligada.png"  data-loading-text="Aguarde..." onclick="acenderLamproomOne()">
+                <img id="lamp1Sala" src="img/leddesligada.png"  data-loading-text="Aguarde...">
                   <figcaption>
                   
                   </figcaption>
               </figure>
             </article>
             <!--CAMPO SALA - LAMPADA 2-->
-            <article class="campo_funcionalidade" title="SALA - Lampada 2">
+            <article class="campo_funcionalidade cursor" title="SALA - Lampada 2"
+             onclick="acenderLamproomTwo(); sendLampRoomTwo();">
               <figure class="lampada1">
                     <label class="label-button"><span>Sala 2º</span></label>
-                    <img class="cursor" id="lamp2Sala" src="img/leddesligada.png" data-loading-text="Aguarde..." onclick="acenderLamproomTwo()">
+                    <img id="lamp2Sala" src="img/leddesligada.png" data-loading-text="Aguarde...">
                     <figcaption>
                       
                     </figcaption>
@@ -122,8 +125,9 @@
             <div class="modal-body">
             <article class="campo_funcionalidadeTV">
               <figure class="espaco-tv">
-                  <img class="espaco-tv-img cursor" id="tv_img" src="img/tvdesligada.png" onclick="acaoBtn()" role="button" 
-                  data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                  <img class="espaco-tv-img cursor" id="tv_img" src="img/tvdesligada.png" onclick="acaoBtn()"
+                  role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" 
+                  aria-controls="collapseExample">
               </figure>
             </article>
               <div class="collapse" id="collapseExample">

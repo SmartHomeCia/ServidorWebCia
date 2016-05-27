@@ -5,10 +5,10 @@ var roomOne = 0;
 var roomTwo = 0;
 var controlAll_lamp = 0;
 var bedroom = 0;
+var All_lampsStatus = "";
 
 exports.control_lampAll = function(){
   if(connection_lamp_all === 0){
-    console.log(connection_lamp_all);
     connection_lamp_all = 1;
     //app.sensors.relay_kitchen.digitalWrite(0);
     //app.sensors.relay_bathroom.digitalWrite(0);
@@ -20,9 +20,9 @@ exports.control_lampAll = function(){
     roomOne = 1;
     roomTwo = 1;
     bedroom = 1;
-    controlAll_lamp = 1;
+    controlAll_lamp = 5;
+    console.log("Todas " + controlAll_lamp);
   } else {
-    console.log(connection_lamp_all);
     connection_lamp_all = 0;
     /*app.sensors.relay_kitchen.digitalWrite(1);
     app.sensors.relay_bathroom.digitalWrite(1);
@@ -36,21 +36,25 @@ exports.control_lampAll = function(){
     roomTwo = 0;
     bedroom = 0;
     controlAll_lamp = 0;
+    console.log("Todas " + controlAll_lamp);
   }
+  All_lampsStatus = "lamp_All_Home";
 };
 
 exports.roomTwo = function(){
   if(roomTwo === 0){
     roomTwo = 1;
     //app.sensors.relay_roomTwo.digitalWrite(0);
-    console.clear();
-    console.log("Ligou Relay - Sala Segunda " + bathroom);//controlAll_lamp += 1;
+    console.log("Ligou Relay - Sala Segunda " + roomTwo);
+    controlAll_lamp += 1;
+    console.log("Todas " + controlAll_lamp);
     statusLamps();
   } else {
     roomTwo = 0;
-    console.clear();
-    console.log("Ligou Relay - Sala Segunda " + bathroom);//app.sensors.relay_roomTwo.digitalWrite(1);
+    console.log("DesLigou Relay - Sala Segunda " + roomTwo);
+    //app.sensors.relay_roomTwo.digitalWrite(1);
     controlAll_lamp -= 1;
+    console.log("Todas " + controlAll_lamp);
     statusLamps();
   }
   return roomTwo;
@@ -59,32 +63,32 @@ exports.roomTwo = function(){
 exports.roomOne = function(){
   if(roomOne === 0){
     roomOne = 1;
-    console.clear();
-    console.log("Ligou Relay - Primeira Sala " + bathroom);////app.sensors.relay_room.digitalWrite(0);
+    console.log("Ligou Relay - Primeira Sala " + roomOne);////app.sensors.relay_room.digitalWrite(0);
     controlAll_lamp += 1;
+    console.log("Todas " + controlAll_lamp);
     statusLamps();
   } else {
     roomOne = 0;
-    console.clear();
-    console.log("Ligou Relay - Primeira Sala " + bathroom);////app.sensors.relay_room.digitalWrite(1);
+    console.log("DesLigou Relay - Primeira Sala " + roomOne);////app.sensors.relay_room.digitalWrite(1);
     controlAll_lamp -= 1;
+    console.log("Todas " + controlAll_lamp);
     statusLamps();
   }
-  return room;
+  return roomOne;
 };
 
 exports.bedroom = function(){
   if(bedroom == 0){
     bedroom = 1;
-    console.clear();
-    console.log("Ligou Relay - Quarto " + bathroom);//app.sensors.relay_bedroom.digitalWrite(0);
+    console.log("Ligou Relay - Quarto " + bedroom);//app.sensors.relay_bedroom.digitalWrite(0);
     controlAll_lamp += 1;
+    console.log("Todas " + controlAll_lamp);
     statusLamps();
   } else {
     bedroom = 0;
-    console.clear();
-    console.log("Ligou Relay - Quarto " + bathroom);//app.sensors.relay_bedroom.digitalWrite(1);
+    console.log("DesLigou Relay - Quarto " + bedroom);//app.sensors.relay_bedroom.digitalWrite(1);
     controlAll_lamp -= 1;
+    console.log("Todas " + controlAll_lamp);
     statusLamps();
   }
   return bedroom;
@@ -93,15 +97,15 @@ exports.bedroom = function(){
 exports.kitchen = function(){
   if(kitchen == 0){
    kitchen = 1;
-   console.clear();
-   console.log("Ligou Relay - Cozinha " + bathroom);////app.sensors.relay_kitchen.digitalWrite(0);
+   console.log("Ligou Relay - Cozinha " + kitchen);////app.sensors.relay_kitchen.digitalWrite(0);
    controlAll_lamp += 1;
+   console.log("Todas " + controlAll_lamp);
    statusLamps();
  } else {
    kitchen = 0;
-   console.clear();
-   console.log("Ligou Relay - Cozinha " + bathroom);////app.sensors.relay_kitchen.digitalWrite(1);
+   console.log("DesLigou Relay - Cozinha " + kitchen);////app.sensors.relay_kitchen.digitalWrite(1);
    controlAll_lamp -= 1;
+   console.log("Todas " + controlAll_lamp);
    statusLamps();
  }
   return kitchen;
@@ -110,22 +114,25 @@ exports.kitchen = function(){
 exports.bathroom = function(){
     if(bathroom === 0){
       bathroom = 1;
-      console.clear;
       console.log("Ligou Relay - Banheiro " + bathroom);//app.sensors.relay_bathroom.digitalWrite(0);
+      controlAll_lamp += 1;
       statusLamps();
+      console.log("Todas " + controlAll_lamp);
     } else {
       bathroom = 0;
-      console.clear;
-      console.log("Ligou Relay - Banheiro " + bathroom);//app.sensors.relay_bathroom.digitalWrite(1);
+      console.log("DesLigou Relay - Banheiro " + bathroom);//app.sensors.relay_bathroom.digitalWrite(1);
+      controlAll_lamp -= 1;
+      console.log("Todas " + controlAll_lamp);
       statusLamps();
     }
   return bathroom;
 };
 
 function statusLamps(){
-  if(controlAll_lamp === 4){
+  if(controlAll_lamp === 5){
     connection_lamp_all = 1;
-  }else if(controlAll_lamp < 4){
+    console.log("Ligou todas as lampadas" + connection_lamp_all);
+  }else if(controlAll_lamp < 5){
     connection_lamp_all = 0;
   }
 };
@@ -138,10 +145,13 @@ exports.socket_Lamps = function(){
     'lampKitchen':kitchen,
     'lampBedroom':bedroom,
     'lampRoomOne':roomOne,
-    'lampRoomTwo':roomTwo
+    'lampRoomTwo':roomTwo,
+    'lamp_all_conect':controlAll_lamp
   });
 
   client.on('lamp_All', function(lamps){
+    var valorCheck = lamps.lamp_all_conect;
+    console.log("Logico "+valorCheck);
     console.log("Servidor " + lamps);
 
     if(lamps == "lampBathroom"){
@@ -154,6 +164,8 @@ exports.socket_Lamps = function(){
       app.relay_roomController();
     }else if (lamps == "lampRoomTwo") {
       app.relay_room2Controller();
+    }else if(lamps == "lamp_All_Home"){
+      app.relay_connect_allController();
     }
 
     client.broadcast.emit("lamp_All", lamps);
