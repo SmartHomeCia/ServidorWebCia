@@ -5,7 +5,6 @@ var roomOne = 0;
 var roomTwo = 0;
 var controlAll_lamp = 0;
 var bedroom = 0;
-var All_lampsStatus = "";
 
 exports.control_lampAll = function(){
   if(connection_lamp_all === 0){
@@ -26,7 +25,6 @@ exports.control_lampAll = function(){
     modifyLamps(0,0);
     console.log("Todas " + controlAll_lamp);
   }
-  All_lampsStatus = "lamp_All_Home";
 };
 
 exports.roomTwo = function(){

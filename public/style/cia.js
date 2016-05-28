@@ -4,10 +4,10 @@ var bedroom;
 var kitchen;
 var roomOne;
 var roomTwo;
+var valorCheck;
 var connection_lamp_all = 0;
 var statusCurtain;
-var tv = 0;
-var valorCheck;
+var tv;
 var socket = io.connect();
 
 socket.on('connect', function(data) {
@@ -22,8 +22,9 @@ socket.on('connect', function(data) {
     data.lampRoomOne == 0 ? statusLampOff("lamp1Sala") : statusLampOn("lamp1Sala");
       roomOne = data.lampRoomOne;
     data.lampRoomTwo == 0 ? statusLampOff("lamp2Sala") : statusLampOn("lamp2Sala");
-      roomTwo = data.lampRoomTwo;
-    if(data.lamp_all_conect == 0){
+      roomTwo = data.lampRoomTwo;  
+    lampsAll = data.lamp_all_conect;
+    if(lampsAll == 0){
       connection_lamp_all = 0;
       valorCheck = 0;
       statusLampOff("lampbathroom");
@@ -31,8 +32,7 @@ socket.on('connect', function(data) {
       statusLampOff("lampbedroom");
       statusLampOff("lamp2Sala");
       statusLampOff("lamp1Sala");
-      status();
-    }else if(data.lamp_all_conect == 5){
+    }else if(lampsAll == 5){
       connection_lamp_all = 5;
       valorCheck = 1;
       statusLampOn("lampbathroom");
@@ -40,9 +40,11 @@ socket.on('connect', function(data) {
       statusLampOn("lampbedroom");
       statusLampOn("lamp2Sala");
       statusLampOn("lamp1Sala");
-      status();
+    }else {
+      connection_lamp_all = lampsAll;
     }
-    console.log(data);
+    status();
+    console.log(lampsAll);
  });
 });
 
@@ -68,13 +70,12 @@ function acenderLampBathroom() {
         bathroom = 1;
         connection_lamp_all += 1;
         statusLampOn("lampbathroom");
-        status();
     } else {
         bathroom = 0;
         statusLampOff("lampbathroom");
         connection_lamp_all -= 1;
-        status();
     }
+    status();
 }
 
 function sendLampBathroom(){
@@ -84,16 +85,15 @@ function sendLampBathroom(){
 // FUNÇAO DA LAMPADA DA kitchen
 function acenderLampkitchen() {
     if (kitchen == 0) {
-        kitchen = 1;
-        statusLampOn("lampkitchen");
-        connection_lamp_all += 1;
-        status();
+      kitchen = 1;
+      statusLampOn("lampkitchen");
+      connection_lamp_all += 1;
     } else {
-        kitchen = 0;
-        statusLampOff("lampkitchen");
-        connection_lamp_all -= 1;
-        status();
+      kitchen = 0;
+      statusLampOff("lampkitchen");
+      connection_lamp_all -= 1;
     }
+    status();
 }
 
 function sendLampKitchen(){
@@ -103,16 +103,15 @@ function sendLampKitchen(){
 // FUNÇAO DA LAMPADA DO bedroom
 function acenderLampbedroom() {
     if (bedroom == 0) {
-        bedroom = 1;
-        statusLampOn("lampbedroom");
-        connection_lamp_all += 1;
-        status();
+      bedroom = 1;
+      statusLampOn("lampbedroom");
+      connection_lamp_all += 1;
     } else {
-        bedroom = 0;
-        statusLampOff("lampbedroom");
-        connection_lamp_all -= 1;
-        status();
+      bedroom = 0;
+      statusLampOff("lampbedroom");
+      connection_lamp_all -= 1;
     }
+    status();
 }
 
 function sendLampBedroom(){
@@ -122,16 +121,15 @@ function sendLampBedroom(){
 // FUNÇAO DA LAMPADA 1 DA SALA
 function acenderLamproomOne() {
     if (roomOne == 0) {
-        roomOne = 1;
-        statusLampOn("lamp1Sala");
-        connection_lamp_all += 1;
-        status();
+      roomOne = 1;
+      statusLampOn("lamp1Sala");
+      connection_lamp_all += 1;
     } else {
-        roomOne = 0;
-        statusLampOff("lamp1Sala");
-        connection_lamp_all -= 1;
-        status();
+      roomOne = 0;
+      statusLampOff("lamp1Sala");
+      connection_lamp_all -= 1;
     }
+    status();
 }
 
 function sendLampRoomOne(){
@@ -141,16 +139,15 @@ function sendLampRoomOne(){
 //FUNÇAO DA LAMPADA 2 DA SALA
 function acenderLamproomTwo() {
     if (roomTwo == 0) {
-        roomTwo = 1;
-        statusLampOn("lamp2Sala");
-        connection_lamp_all += 1;
-        status();
+      roomTwo = 1;
+      statusLampOn("lamp2Sala");
+      connection_lamp_all += 1;
     } else {
-        roomTwo = 0;
-        statusLampOff("lamp2Sala");
-        connection_lamp_all -= 1;
-        status();
+      roomTwo = 0;
+      statusLampOff("lamp2Sala");
+      connection_lamp_all -= 1;
     }
+    status();
 }
 
 function sendLampRoomTwo(){
@@ -173,19 +170,19 @@ function status() {
 //FUNÇAO DE TODAS AS LAMPADAS
 function controlAllLamps() {
     if (valorCheck == 0) {
-        statusLampOn("lampbathroom");
-        statusLampOn("lampkitchen");
-        statusLampOn("lampbedroom");
-        statusLampOn("lamp2Sala");
-        statusLampOn("lamp1Sala");
-        modifyLamps(1,5);
+      statusLampOn("lampbathroom");
+      statusLampOn("lampkitchen");
+      statusLampOn("lampbedroom");
+      statusLampOn("lamp2Sala");
+      statusLampOn("lamp1Sala");
+      modifyLamps(1,5);
     }else {
-        statusLampOff("lampbathroom");
-        statusLampOff("lampkitchen");
-        statusLampOff("lampbedroom");
-        statusLampOff("lamp2Sala");
-        statusLampOff("lamp1Sala");
-        modifyLamps(0,0);
+      statusLampOff("lampbathroom");
+      statusLampOff("lampkitchen");
+      statusLampOff("lampbedroom");
+      statusLampOff("lamp2Sala");
+      statusLampOff("lamp1Sala");
+      modifyLamps(0,0);
     }
     status();
 }
@@ -195,6 +192,7 @@ function sendLamp_All(){
 }
 
 function modifyLamps(un_lamp,un_all_lamp){
+  console.log("valorCheck: "+valorCheck);
   bathroom = un_lamp;
   kitchen = un_lamp;
   bedroom = un_lamp;
@@ -204,8 +202,6 @@ function modifyLamps(un_lamp,un_all_lamp){
   connection_lamp_all = un_all_lamp;
   console.log(un_lamp + " - " + un_all_lamp);
 }
-
-
 
 //FUNCAO CORTINA
 function activeCurtain() {
