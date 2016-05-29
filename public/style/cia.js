@@ -6,9 +6,11 @@ var roomOne = 0;
 var roomTwo = 0;
 var valorCheck = 0;
 var volume = 0;
+var volume_ar = 0;
 var connection_lamp_all = 0;
 var statusCurtain = 0;
 var tv = 0;
+var ar = 0;
 var socket = io.connect();
 
 socket.on('connect', function(data) {
@@ -261,6 +263,36 @@ function decrease(){
   else{
     volume--;
     document.getElementById("volume_tv").innerHTML = volume;
+  }
+}
+
+//AR
+function activeArCia() {
+  btnArimg = document.getElementById('ar_img');
+  if (ar === 0) {
+    ar = 1;
+    btnArimg.src = "img/ar_on.jpg";
+    document.getElementById('collapse_ar').style.display = "block";
+ } else {
+    ar = 0;
+    btnArimg.src = "img/ar_off.jpg";
+    document.getElementById('collapse_ar').style.display = "none";
+  }
+}
+
+function Increase_ar(){
+  if(volume_ar >= 100){}
+  else{
+    volume_ar++;
+    document.getElementById("volume_ar").innerHTML = volume_ar;
+  }
+}
+
+function decrease_ar(){
+  if(volume_ar <= 0){}
+  else{
+    volume_ar--;
+    document.getElementById("volume_ar").innerHTML = volume_ar;
   }
 }
 

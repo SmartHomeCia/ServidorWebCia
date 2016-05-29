@@ -321,7 +321,7 @@ border-radius: 1em;
 }
 
 /*field curtain function*/
-.curtain_space img{
+.curtain_space input{
 position: relative;
 left: 14%;
 width: 70%;
