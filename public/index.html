@@ -42,7 +42,7 @@
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
               <h4 class="modal-title" id="myModalLabel">Controle da Iluminaç&atilde;o</h4>
                 <!--CAMPO DE TODAS AS LAMPADAS-->
-                <article class="campo_func_geral">  
+                <article class="campo_lamp_all">  
                    <div class="row">
                       <div class="switch">
                         <input id="cmn-toggle-2" class="cmn-toggle cmn-toggle-round" type="checkbox" 
@@ -55,57 +55,39 @@
             </div>
             <div class="modal-body">
             <!--CAMPO BANHEIRO - LAMPADA-->
-            <article class="campo_funcionalidade cursor" title="Banheiro - Lampada" 
-            onclick="acenderLampBathroom(); sendLampBathroom();">
+            <article class="campo_funcionalidade cursor">
               <figure class="lampada1">
                 <label class="label-button"><span>Banheiro</span></label>
-                <img class="image" id="lampbathroom" data-loading-text="Aguarde..." src="img/leddesligada.png">
-                <figcaption>
-                </figcaption>
+                <input type="image" class="image" id="lampbathroom" data-loading-text="Aguarde..." src="img/leddesligada.png"
+                onclick="acenderLampBathroom(); sendLampBathroom();" title="Banheiro - Lampada">
                </figure>
             </article>
               <!--CAMPO COZINHA - LAMPADA-->
-            <article class="campo_funcionalidade cursor" title="Lampada Cozinha"
-               onclick="acenderLampkitchen(); sendLampKitchen();">
+            <article class="campo_funcionalidade cursor">
               <figure class="lampada1">
                   <label class="label-button"><span>Cozinha</span></label>
-                  <img id="lampkitchen" src="img/leddesligada.png" data-loading-text="Aguarde...">
-                <figcaption>
-                 
-                </figcaption>
+                  <input type="image" id="lampkitchen" src="img/leddesligada.png" onclick="acenderLampkitchen(); sendLampKitchen();" title="Lampada Cozinha">
               </figure>
             </article>
               <!--CAMPO QUARTO - LAMPADA-->
-            <article class="campo_funcionalidade cursor" title="Quarto - Lampada" 
-            onclick="acenderLampbedroom(); sendLampBedroom();">
+            <article class="campo_funcionalidade cursor">
               <figure class="lampada1">
                  <label class="label-button"><span>Quarto</span></label>
-                 <img id="lampbedroom" src="img/leddesligada.png" data-loading-text="Aguarde...">
-               <figcaption>
-                 
-               </figcaption>
+                 <input type="image" id="lampbedroom" src="img/leddesligada.png" onclick="acenderLampbedroom(); sendLampBedroom();" title="Quarto - Lampada">
               </figure>
             </article>
             <!--CAMPO SALA - LAMPADA 1-->
-            <article class="campo_funcionalidade cursor" title="SALA - Lampada 1" 
-            onclick="acenderLamproomOne(); sendLampRoomOne();">
+            <article class="campo_funcionalidade cursor">
               <figure class="lampada1">
                 <label class="label-button"><span>Sala 1º</span></label>
-                <img id="lamp1Sala" src="img/leddesligada.png"  data-loading-text="Aguarde...">
-                  <figcaption>
-                  
-                  </figcaption>
+                <input type="image" id="lamp1Sala" src="img/leddesligada.png" onclick="acenderLamproomOne(); sendLampRoomOne();" title="SALA - Lampada 1">
               </figure>
             </article>
             <!--CAMPO SALA - LAMPADA 2-->
-            <article class="campo_funcionalidade cursor" title="SALA - Lampada 2"
-             onclick="acenderLamproomTwo(); sendLampRoomTwo();">
+            <article class="campo_funcionalidade cursor">
               <figure class="lampada1">
-                    <label class="label-button"><span>Sala 2º</span></label>
-                    <img id="lamp2Sala" src="img/leddesligada.png" data-loading-text="Aguarde...">
-                    <figcaption>
-                      
-                    </figcaption>
+                <label class="label-button"><span>Sala 2º</span></label>
+                <input type="image" id="lamp2Sala" src="img/leddesligada.png" onclick="acenderLamproomTwo(); sendLampRoomTwo();" title="SALA - Lampada 2">
               </figure>
             </article>
             </div>
@@ -117,20 +99,26 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                <span class="glyphicon glyphicon-remove"></span>
+              </button>
               <h4 class="modal-title" id="myModalLabel">Multim&iacute;dia</h4>
             </div>
             <div class="modal-body">
-            <article class="campo_funcionalidadeTV">
-              <figure class="espaco-tv">
-                  <img class="espaco-tv-img cursor" id="tv_img" src="img/tvdesligada.png" onclick="acaoBtn()"
-                  role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" 
-                  aria-controls="collapseExample">
-              </figure>
-            </article>
-              <div class="collapse" id="collapseExample">
+              <article class="campo_funcionalidade_TV cursor">
+                <figure>
+                  <input type="image" id="tv_img" src="img/tvciaOff.png" 
+                  onclick="activeTvCia()">
+                </figure>
+              </article>
+              <div class="collapse" id="collapse_tv">
                 <div class="well">
-                 
+                 <button class="btn_-" onclick="decrease()"><i class="glyphicon glyphicon-chevron-down" data-position="icon only"></i></button>
+                 <div class="volume">
+                  <span id="volume_tv">0</span>
+                  <span class="volume_out">Volume</span>
+                 </div>
+                 <button class="btn_" onclick="Increase()"><i class="glyphicon glyphicon-chevron-up" data-position="icon only"></i></button>
                 </div>
               </div>
             </div>
@@ -189,10 +177,8 @@
              <div id="myTabContent2" class="tab-content">
                <div class="curtain_field">
                  <figure class="curtain_space">
-                    <img id="curtain_img" class="cursor" src="img/cortina-fechada.png" onclick="activeCurtain()" data-loading-text="Aguarde..."
-                     ng-click="toggle_control_curtain()">
-                    <figcaption>
-                    </figcaption>
+                    <img id="curtain_img" class="cursor" src="img/cortina-fechada.png" 
+                    onclick="activeCurtain(); sendCurtain();">
                  </figure>
                </div>
              </div>

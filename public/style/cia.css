@@ -5,7 +5,6 @@ height: 7em;
 box-shadow: 1px 3px 2px 0 rgba(0,0,0,.2);
 }
 
-
 .logo{
 height: 5em;
 float: left;
@@ -14,7 +13,6 @@ border-radius: 10em;
 left: 5%;
 top: 0.5em;
 }
-
 
 /*NOME DO PROJETO na barra titulo do site*/
 .titulo-cia{
@@ -50,17 +48,15 @@ padding:0;
 
 /*CAMPO DAS FUNÇOES LAMPADAS*/
 .campo_funcionalidade{ 
-position: relative;
-margin: 1%;
-padding: 0;
-width: 29%;
-left: 3.5%;
-float: left;
-border: 1px solid #02C2F2;
-top: -0.5em;
+  position: relative;
+  padding: 0;
+  width: 33%;
+  left: 1%;
+  float: left;
+  top: -0.5em;
 }                                                                                           
 
-.campo_funcionalidade img{
+.campo_funcionalidade input{
 width: 60%;
 position: relative;
 left: 14%;
@@ -68,33 +64,8 @@ padding: 0;
 margin: 4%;
 top: -1em;
 z-index: 1;
+outline: none;
 }
-
-.btn-lg{
-width: 70%;
-margin: 0;
-padding: 5%;
-font-size: inherit;
-font-weight: 100;
-border-radius: 4em;
-position: relative;
-left: 14%;
-border: 2px solid #337AB7;
-}                                                                                         
-
-.btn-lg_cortina{
-width: 70%;
-margin: 0;
-padding: 5%;
-font-size: inherit;
-border-radius: 4em;
-position: relative;
-font-weight: 100;
-left: 19%;
-border: 2px solid #337AB7;
-}
-
-
 
 .label-button{
 display: block;
@@ -112,8 +83,6 @@ text-align: center;
 font-weight: 100;
 }
 
-
-
 figcaption{
 margin: 0;
 padding: 0%;
@@ -123,15 +92,11 @@ position: relative;
 top: -1em;
 }
 
-
-
 .modal-content{
-width: 90%;
+width: 100%;
 position: absolute;
 left: 0%;
 }
-
-
 
 .modal-footer {
 padding: 15px;
@@ -143,15 +108,17 @@ left: 0em;
 display: inline-block;
 }
 
-
-
 .modal-title {
 margin: 0;
 line-height: 1.42857143;
 text-align: center;
 }
 
-
+.campo_funcionalidade input:hover{
+transition: 0.1s;
+transform: rotate(1em);
+box-shadow: 0px 1px 1px 1px #7B8588;
+}
 
 /*PARTE DO CAMPO DO BOTAO DE CONFIGURAÇOES NA BARRA DE TITULO DO SITE*/
 .navbar-nav{
@@ -163,8 +130,6 @@ float: right;
 right: 2%;
 }
 
-
-
 .nav>li{
 position: relative;
 display: block;
@@ -173,9 +138,7 @@ font-size: 1pc;
 font-weight: 100;
 }
 
-
-
-.campo_func_geral{
+.campo_lamp_all{
 width: 14%;
 margin: 0;
 padding: 0;
@@ -185,32 +148,105 @@ position: relative;
 left: -5%;
 }
 
-
-.campo_func_geral span{
+.campo_lamp_all span{
 position: relative;
 right: 13%;
 padding: 9%;
 }
 
-
 /**************************************/
 /*CONFIGURAÇAO DA TV, LOCAL DA IMAGEM*/
-.campo_funcionalidadeTV{
-background-color: #CCC;
-width: 80%;
-position: relative;
+.campo_funcionalidade_TV{
+width: 100%;
+position:relative;
 float: none;
 text-align: center;
-left: 10.5%;
+left: 0%;
 }
 
-
-.espaco-tv-img{
-width: 70%;
-margin: 2%;
-padding: 3%;
+.campo_funcionalidade_TV figure{
+width: 80%;
+height: 25em;
+position: relative;
+left: 10%;
 }
 
+.campo_funcionalidade_TV figure input{
+	height: 100%;
+	width: 100%;
+  outline: none;
+}
+
+.well{
+	text-align: center;
+}
+
+.well button{
+	position: relative;
+  border: none;
+  padding: 20px;
+  text-align: center;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+  width: 25%;
+  outline: none;
+  top: -1.2em;										
+}
+
+.btn_{
+	background: #02C2F2;
+  color: #FFF;
+  border: none;
+  box-shadow: 1px 1px 10px 2px #A9A5A5;
+}
+
+.btn_-{
+  background-color: white;
+  color: #02C2F2;
+  border: none;
+  box-shadow: 1px 1px 10px 2px #A9A5A5;
+}
+
+.well button:after {
+	content: "";
+	background: #CCC;
+	display: block;
+	position: absolute;
+	padding-top: 300%;
+	padding-left: 350%;
+	top: 0%;
+	left: -1%;
+	opacity: 0;
+	transition: all 0.8s
+}
+
+.well button:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s;
+}
+.well button:active {
+  transform: translateY(4px);
+}
+
+.volume{
+	width: 20%;
+	display: inline-block; 
+}
+
+.volume span{
+	color: #75868C;
+	font-size: xx-large;
+}
+
+.volume .volume_out{
+	font-size: 1em;
+	display: block;
+}
 
 /*CONFIGURAÇAO DA TEMPERATURA, LOCAL DA IMAGEM*/
 .temp_bathroom,
@@ -225,7 +261,6 @@ position: relative;
 left: 10%;
 }
 
-
 .temp_bathroom .icon_celsius,
 .temp_kitchen .icon_celsius,
 .temp_bedroom .icon_celsius,
@@ -238,7 +273,6 @@ left: 0;
 color: #10CAEB;
 font-weight: 100;
 }
-
 
 .temp_bathroom span,
 .temp_kitchen span,
@@ -253,7 +287,6 @@ left: -34%;
 font-weight: 100;
 }
 
-
 .temp_bathroom img,
 .temp_kitchen img,
 .temp_bedroom img,
@@ -265,7 +298,6 @@ left: -13%;
 height: 60%;
 width: 25%;
 }
-
 
 .temp_bathroom .tmper,
 .temp_kitchen .tmper,
@@ -282,13 +314,11 @@ left: 0%;
 font-weight: 100;
 }
 
-
 /*field curtain functions*/
 .curtain_field{
 width: 100%;
 border-radius: 1em;
 }
-
 
 /*field curtain function*/
 .curtain_space img{
@@ -300,7 +330,6 @@ margin: 2%;
 height: 25em;
 }
 
-
 /**/
 .curtain_space figcaption{
 width: 60%;
@@ -309,18 +338,14 @@ left: 13%;
 margin: 5%;
 }
 
-
 #lampe{
 opacity: 0;
 }
-
-
 
 .container{
 height: 82%;
 width: auto;
 }
-
 
 .row1{
 width: 70%;
@@ -332,7 +357,6 @@ padding: 0;
 display: inline-block;
 }
 
-
 .row2{
 width: 70%;
 height: 37%;
@@ -342,14 +366,12 @@ margin: 0% 0% 0% 0.5%;
 padding: 0;
 }
 
-
 .temp{
 background-color: #02C2F2;
 height: 100%;
 border: 0.1em solid #F1F1F1;
 transition:.3s;
 }
-
 
 .temperature{
 height: 100%;
@@ -358,12 +380,10 @@ left: 0%;
 width: 100%;
 }
 
-
 .temp:hover .temperature{
 transition: 0.9s;
 transform: scale(1.1,1.1);
 }
-
 
 .img-thumbnaill_temp{
 position: relative;
@@ -371,7 +391,6 @@ left: 31%;
 height: 70%;
 top: 8%;
 }
-
 
 .temp_label{
 font-size: 2rem;
@@ -621,7 +640,6 @@ left: 11%;
 top: 7%;
 }
 
-
 .label_config{
 font-size: 2rem;
 font-weight: 100;
@@ -630,26 +648,14 @@ top: 13.5%;
 left: 13%;
 }
 
-
 .config:hover .config_suspense{
 transition: 0.9s;
 transform: scale(1.1,1.1);
 }
 
-
-
-.campo_funcionalidade:hover label{
-transition: 0.9s;
-background-color: #02C2F2;
-transform: rotate(1em);
-color: #FFF;
-}
-
-
 .cursor{
 cursor: pointer;
 }
-
 
 @media screen and (max-width: 800px){
 .titulo-cia {

@@ -1,5 +1,5 @@
 var express       = require('express.io'),
-    child         = require('child_process'),
+    //child         = require('child_process'),
     Cylon         = require('cylon'),
     mongoose      = require("mongoose"),
     temper        = require('./models/temperature.js'),
@@ -7,7 +7,7 @@ var express       = require('express.io'),
     control_light = require('./models/lamps.js');
 
 app = express();
-socket = require('socket.io').listen(app.listen(5040));
+socket = require('socket.io').listen(app.listen(8245));
 
 app.sensorsReady = false;
 app.sensors = {};
@@ -88,4 +88,6 @@ app.control_curtain = function () {
 
 control_light.socket_Lamps();
 
-console.log('Smart Home - C.I.A - 5040');
+ExeStepper.socket_curtain();
+
+console.log('Smart Home - C.I.A - 8245');
