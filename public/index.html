@@ -47,7 +47,7 @@
                       <div class="switch">
                         <input id="cmn-toggle-2" class="cmn-toggle cmn-toggle-round" type="checkbox" 
                         onclick="controlAllLamps(); sendLamp_All();">
-                        <label for="cmn-toggle-2"></label>
+                        <label id="toogle_all" for="cmn-toggle-2"></label>
                         <span>Todas</span>
                       </div>
                     </div>
@@ -55,7 +55,7 @@
             </div>
             <div class="modal-body">
             <!--CAMPO BANHEIRO - LAMPADA-->
-            <article class="campo_funcionalidade cursor">
+            <article class="campo_funcionalidade">
               <figure class="lampada1">
                 <label class="label-button"><span>Banheiro</span></label>
                 <input type="image" class="image" id="lampbathroom" data-loading-text="Aguarde..." src="img/leddesligada.png"
@@ -63,28 +63,28 @@
                </figure>
             </article>
               <!--CAMPO COZINHA - LAMPADA-->
-            <article class="campo_funcionalidade cursor">
+            <article class="campo_funcionalidade">
               <figure class="lampada1">
                   <label class="label-button"><span>Cozinha</span></label>
                   <input type="image" id="lampkitchen" src="img/leddesligada.png" onclick="acenderLampkitchen(); sendLampKitchen();" title="Lampada Cozinha">
               </figure>
             </article>
               <!--CAMPO QUARTO - LAMPADA-->
-            <article class="campo_funcionalidade cursor">
+            <article class="campo_funcionalidade">
               <figure class="lampada1">
                  <label class="label-button"><span>Quarto</span></label>
                  <input type="image" id="lampbedroom" src="img/leddesligada.png" onclick="acenderLampbedroom(); sendLampBedroom();" title="Quarto - Lampada">
               </figure>
             </article>
             <!--CAMPO SALA - LAMPADA 1-->
-            <article class="campo_funcionalidade cursor">
+            <article class="campo_funcionalidade">
               <figure class="lampada1">
                 <label class="label-button"><span>Sala 1º</span></label>
                 <input type="image" id="lamp1Sala" src="img/leddesligada.png" onclick="acenderLamproomOne(); sendLampRoomOne();" title="SALA - Lampada 1">
               </figure>
             </article>
             <!--CAMPO SALA - LAMPADA 2-->
-            <article class="campo_funcionalidade cursor">
+            <article class="campo_funcionalidade">
               <figure class="lampada1">
                 <label class="label-button"><span>Sala 2º</span></label>
                 <input type="image" id="lamp2Sala" src="img/leddesligada.png" onclick="acenderLamproomTwo(); sendLampRoomTwo();" title="SALA - Lampada 2">

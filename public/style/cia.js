@@ -298,6 +298,12 @@ function decrease_ar(){
 
 //FUNÇÃO PARA BLOQUEAR EM 5 SEGUNDOS
 function block(id_func){
+  if(id_func == "cmn-toggle-2"){
+    document.getElementById("toogle_all").style.cursor = "not-allowed";
+    setTimeout(function(){ 
+    document.getElementById("toogle_all").style.cursor = "pointer";
+  }, 5000);
+  }
   document.getElementById(id_func).disabled = true;
   document.getElementById(id_func).style.cursor = "not-allowed";
   setTimeout(function(){ 
