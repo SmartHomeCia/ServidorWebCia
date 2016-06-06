@@ -224,11 +224,11 @@ function activeCurtain() {
   if (statusCurtain == 0) {
     document.getElementById("curtain_img").src = "img/cortina-aberta.png";
     statusCurtain = 1;
-    block("curtain_img");
+    block_device("curtain_img");
   } else {
     document.getElementById("curtain_img").src = "img/cortina-fechada.png";
     statusCurtain = 0;
-    block("curtain_img");
+    block_device("curtain_img");
   }
 }
 
@@ -271,11 +271,11 @@ function activeArCia() {
   btnArimg = document.getElementById('ar_img');
   if (ar === 0) {
     ar = 1;
-    btnArimg.src = "img/ar_on.jpg";
+    btnArimg.src = "img/ar_on.png";
     document.getElementById('collapse_ar').style.display = "block";
  } else {
     ar = 0;
-    btnArimg.src = "img/ar_off.jpg";
+    btnArimg.src = "img/ar_off.png";
     document.getElementById('collapse_ar').style.display = "none";
   }
 }
@@ -296,20 +296,29 @@ function decrease_ar(){
   }
 }
 
+function block_device(id_device){
+  document.getElementById(id_device).disabled = true;
+  document.getElementById(id_device).style.cursor = "not-allowed";
+  setTimeout(function(){ 
+    document.getElementById(id_device).disabled = false;
+    document.getElementById(id_device).style.cursor = "pointer";
+  }, 8000);
+}
+
 //FUNÇÃO PARA BLOQUEAR EM 5 SEGUNDOS
 function block(id_func){
   if(id_func == "cmn-toggle-2"){
     document.getElementById("toogle_all").style.cursor = "not-allowed";
     setTimeout(function(){ 
     document.getElementById("toogle_all").style.cursor = "pointer";
-  }, 5000);
+  }, 1000);
   }
   document.getElementById(id_func).disabled = true;
   document.getElementById(id_func).style.cursor = "not-allowed";
   setTimeout(function(){ 
     document.getElementById(id_func).disabled = false;
     document.getElementById(id_func).style.cursor = "pointer";
-  }, 5000);
+  }, 1000);
 }
 
 function block_all(){

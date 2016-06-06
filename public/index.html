@@ -58,8 +58,7 @@
             <article class="campo_funcionalidade">
               <figure class="lampada1">
                 <label class="label-button"><span>Banheiro</span></label>
-                <input type="image" class="image" id="lampbathroom" data-loading-text="Aguarde..." src="img/leddesligada.png"
-                onclick="acenderLampBathroom(); sendLampBathroom();" title="Banheiro - Lampada">
+                <input type="image" class="image-responsive image" id="lampbathroom" src="img/leddesligada.png" onclick="acenderLampBathroom(); sendLampBathroom();" title="Banheiro - Lampada">
                </figure>
             </article>
               <!--CAMPO COZINHA - LAMPADA-->
@@ -139,7 +138,7 @@
                       <span id="temperature_bathroom" class="tmper">25º</span>
                       <span class="icon_celsius">C</span>
                       <span>Banheiro</span>
-                      <img src="img/bath_temp.png" alt="banheiro-icon">
+                      <img class="img-responsive" src="img/bath_temp.png" alt="banheiro-icon">
                     </div>
                     <div class="col-md-12 temp_kitchen">
                       <span id="temperature_kitchen" class="tmper">25º</span>
@@ -194,12 +193,12 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                   <span class="glyphicon glyphicon-remove"></span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">Multim&iacute;dia</h4>
+                <h4 class="modal-title" id="myModalLabel">Ar-Condicionado</h4>
               </div>
               <div class="modal-body">
                 <article class="campo_funcionalidade_TV cursor">
                   <figure>
-                    <input type="image" id="ar_img" src="img/ar_off.jpg" 
+                    <input type="image" id="ar_img" src="img/ar_off.png" 
                     onclick="activeArCia()">
                   </figure>
                 </article>
@@ -230,7 +229,7 @@
             <!--Lampada-->
             <div class="col-md-3 lamp" data-toggle="modal" data-target="#myModal_luz" title="Ilumina&ccedil;&atilde;o">
              <div class="lamps">
-               <img src="img/ledicone.png" class="img-thumbnaill_lamps">
+             <img src="img/ledicone.png" class="img-thumbnaill_lamps">
                <label class="label label_lamp">Iluminação</label>
              </div>
             </div>
