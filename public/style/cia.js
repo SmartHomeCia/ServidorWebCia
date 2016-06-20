@@ -38,6 +38,20 @@ socket.on('connect', function(data) {
     }
     status();
  });
+ socket.on('curtain_channel',function(data){
+    data.sts_curtain == 0 ? document.getElementById("curtain_img").src = "img/cortina-fechada.png" : document.getElementById("curtain_img").src = "img/cortina-aberta.png";
+    data.sts_curtain == 0 ? document.getElementById("status_curtain").innerHTML = "Cortina Fechada": document.getElementById("status_curtain").innerHTML = "Cortina Aberta";
+    statusCurtain = data.sts_curtain;
+  });
+
+  socket.on('tv_connect',function(data){
+    tv = data.tv_status;
+    volume = data.volume_tv;
+    data.tv_status == 0 ? document.getElementById("tv_img").src = "img/tvciaOff.png" : document.getElementById("tv_img").src = "img/tvciaOn.png";
+    data.tv_status == 0 ? document.getElementById('collapse_tv').style.display = "none" : document.getElementById('collapse_tv').style.display = "block";
+    document.getElementById("volume_tv").innerHTML = volume;
+  });
+});
 
   socket.on('lamp_All', function(lamps) {
    if (lamps == "lampBathroom"){
@@ -55,18 +69,6 @@ socket.on('connect', function(data) {
    }
   });
 
-  socket.on('curtain_channel',function(data){
-    data.sts_curtain == 0 ? document.getElementById("curtain_img").src = "img/cortina-fechada.png" : document.getElementById("curtain_img").src = "img/cortina-aberta.png";
-    statusCurtain = data.sts_curtain;
-  });
-
-  socket.on('tv_connect',function(data){
-    tv = data.tv_status;
-    volume = data.volume_tv;
-    data.tv_status == 0 ? document.getElementById("tv_img").src = "img/tvciaOff.png" : document.getElementById("tv_img").src = "img/tvciaOn.png";
-    data.tv_status == 0 ? document.getElementById('collapse_tv').style.display = "none" : document.getElementById('collapse_tv').style.display = "block";
-    document.getElementById("volume_tv").innerHTML = volume;
-  });
   socket.on('tv_function',function(tv_data){
     if(tv_data == "tv_On_Off"){
       activeTvCia();
@@ -86,7 +88,6 @@ socket.on('connect', function(data) {
       activeCurtain();
     }
   });
-});
 
 //FUNÇAO LAMPADA bathroom
 function acenderLampBathroom() {
@@ -242,16 +243,25 @@ function statusLampOn(idLampOnimg) {
 
 //FUNCAO CORTINA
 function activeCurtain() {
+  var nameStatus = "";
   if (statusCurtain == 0) {
     document.getElementById("curtain_img").src = "img/cortina-aberta.png";
     statusCurtain = 1;
+    document.getElementById("status_curtain").innerHTML = "Cortina Abrindo";
+    nameStatus = "Cortina Aberta";
     block_device("curtain_img");
   } else {
     document.getElementById("curtain_img").src = "img/cortina-fechada.png";
     statusCurtain = 0;
     block_device("curtain_img");
+    document.getElementById("status_curtain").innerHTML = "Cortina Fechando";
+    nameStatus = "Cortina Fechada";
   }
-}
+    setTimeout(function(){ 
+    document.getElementById("status_curtain").innerHTML = nameStatus;
+  }, 20000);
+
+}  
 
 function sendCurtain(){
   socket.emit('curtain_func',"control_Curtain");
@@ -313,6 +323,18 @@ function activeArCia() {
   }
 }
 
+function sendVolume_IncreaseAr(){
+  socket.emit('ar_volume', "increaseAr");
+}
+
+function sendVolume_DecreaseAr(){
+  socket.emit('ar_volume', "decreaseAr");
+}
+
+function sendArHome(){
+  socket.emit('ar_function', "ar_On_Off");
+}
+
 function Increase_ar(){
   if(volume_ar >= 100){}
   else{
@@ -332,20 +354,9 @@ function decrease_ar(){
 function block_device(id_device){
   document.getElementById(id_device).disabled = true;
   document.getElementById(id_device).style.cursor = "not-allowed";
-  if(id_device == "curtain_img"){
-    var nameStatus = document.getElementById("status_curtain").innerHTML;
-    if (nameStatus == "Cortina Fechada") {
-      nameStatus = "Cortina Aberta";
-      document.getElementById("status_curtain").innerHTML = "Cortina Abrindo";
-    }else {
-      nameStatus = "Cortina Fechada";
-      document.getElementById("status_curtain").innerHTML = "Cortina Fechando";
-    }  
-  }
   setTimeout(function(){ 
     document.getElementById(id_device).disabled = false;
     document.getElementById(id_device).style.cursor = "pointer";
-    document.getElementById("status_curtain").innerHTML = nameStatus;
   }, 20000);
 }
 
