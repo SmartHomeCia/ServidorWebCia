@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>#C.I.A</title>
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon"/>
-    <link rel="stylesheet" type="text/css" href="style/dist/fonts/HelveticaNeueLTStd-Lt/font.css">
     <link rel="stylesheet" href="style/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style/cia.css">
+    <link rel="stylesheet" type="text/css" href="style/dist/fonts/css/cerulean.min.css">
     <link href="style/style.css" rel="stylesheet">
       <!-- JavaScript Includes -->
     <script src="style/JS/vendor/jquery.min.js"></script>
@@ -107,17 +107,17 @@
               <article class="campo_funcionalidade_TV cursor">
                 <figure>
                   <input type="image" id="tv_img" src="img/tvciaOff.png" 
-                  onclick="activeTvCia()">
+                  onclick="activeTvCia(); sendTvHome();" title="Televisor">
                 </figure>
               </article>
               <div class="collapse" id="collapse_tv">
                 <div class="well">
-                 <button class="btn_-" onclick="decrease()"><i class="glyphicon glyphicon-chevron-down" data-position="icon only"></i></button>
+                 <button class="btn_-" onclick="decrease(); sendVolume_Decrease();"><i class="glyphicon glyphicon-chevron-down" data-position="icon only"></i></button>
                  <div class="volume">
                   <span id="volume_tv">0</span>
                   <span class="volume_out">Volume</span>
                  </div>
-                 <button class="btn_" onclick="Increase()"><i class="glyphicon glyphicon-chevron-up" data-position="icon only"></i></button>
+                 <button class="btn_" onclick="Increase(); sendVolume_Increase();"><i class="glyphicon glyphicon-chevron-up" data-position="icon only"></i></button>
                 </div>
               </div>
             </div>
@@ -180,6 +180,7 @@
                     onclick="activeCurtain(); sendCurtain();">
                  </figure>
                </div>
+               <span id="status_curtain">Cortina Fechada</span>
              </div>
             </div>
            </div>
@@ -218,6 +219,13 @@
         </div>
         <!--PAINEL PRINCIPAL DO SITE-->
           <div class="col-md-12 row1 cursor">
+            <!--Lampada-->
+            <div class="col-md-3 lamp" data-toggle="modal" data-target="#myModal_luz" title="Ilumina&ccedil;&atilde;o">
+             <div class="lamps">
+             <img src="img/ledicone.png" class="img-thumbnaill_lamps">
+               <label class="label label_lamp">Iluminação</label>
+             </div>
+            </div>
             <!--Temperatura-->
             <div class="col-md-6 temp" data-toggle="modal" data-target="#myModaltemp" title="Temperatura">
              <div class="temperature">
@@ -225,13 +233,6 @@
               <span id="temperature_media" class="label label_temp_out">23°C</span><span class="label lab_med">Média</span>
               <img src="img/tempicone.png" class="img-thumbnaill_temp"> 
              </div>  
-            </div>
-            <!--Lampada-->
-            <div class="col-md-3 lamp" data-toggle="modal" data-target="#myModal_luz" title="Ilumina&ccedil;&atilde;o">
-             <div class="lamps">
-             <img src="img/ledicone.png" class="img-thumbnaill_lamps">
-               <label class="label label_lamp">Iluminação</label>
-             </div>
             </div>
             <!--Cortina-->
             <div class="col-md-3 curtain" data-toggle="modal" data-target="#myModalcortina" title="Cortina">
@@ -243,7 +244,7 @@
           </div>
             <!--Televisão-->
           <div class="col-md-12 row2 cursor label_weight">
-            <div class="col-md-3 tv" data-toggle="modal" data-target="#myModal_tv" title="Multim&iacute;dia">
+            <div class="col-md-6 tv" data-toggle="modal" data-target="#myModal_tv" title="Multim&iacute;dia">
               <div class="tv_suspense">
                 <img src="img/tvicone.png" class="img-thumbnaill_tv">
                 <label class="label label_tv">Multimidia</label>
@@ -257,14 +258,7 @@
                 <span class="title_temp">Quarto</span>
                 <label class="label label_ar">Ar-Condicionado</label>
               </div>
-            </div>
-            <!--Configuração-->
-            <div class="col-md-3 config" data-toggle="modal" data-target="#myModalconfig" title="Configuração">
-              <div class="config_suspense">
-                <img src="img/config.png" class="img-thumbnaill_config">
-                <label class="label label_config">Configuração</label>
-              </div>
-            </div>   
+            </div> 
           </div>
       </div>
       <script src="javascripts/service.js"></script>

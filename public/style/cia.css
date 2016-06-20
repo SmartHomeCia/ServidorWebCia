@@ -117,7 +117,7 @@ text-align: center;
 
 .campo_funcionalidade input:hover{
   transition: 0.1s;
-  box-shadow: 0px 10px 20px 0px #7B8588;
+  box-shadow: 0px 2px 5px 0px #7B8588;
   border-radius: 1px;
 }
 
@@ -246,16 +246,19 @@ width: 100%;
 }
 
 /*CONFIGURAÇAO DA TEMPERATURA, LOCAL DA IMAGEM*/
-.temp_bathroom,
-.temp_kitchen,
-.temp_bedroom,
-.temp_room{
+.temp_bathroom, .temp_kitchen, .temp_bedroom, .temp_room{
 background: #F3F2F0;
 height: 8em;
 margin: 0px 0.1% 2%;
 width: 80%;
 position: relative;
 left: 10%;
+box-shadow: 1px 1px 1px 1px #CCC;
+cursor: text;
+}
+
+.temp_bathroom:hover, .temp_kitchen:hover, .temp_bedroom:hover, .temp_room:hover{
+  background-color: #EFECE7;
 }
 
 .temp_bathroom .icon_celsius,
@@ -280,7 +283,7 @@ position: relative;
 top: 10%;
 font-size: 2rem;
 color: #10CAEB;
-left: -34%;
+left: -25%;
 font-weight: 100;
 }
 
@@ -300,15 +303,15 @@ width: 25%;
 .temp_kitchen .tmper,
 .temp_bedroom .tmper,
 .temp_room .tmper{
-float: left;
-float: left;
-position: relative;
-top: 20%;
-font-size: 7rem;
-margin: 1.5%;
-color: #10CAEB;
-left: 0%;
-font-weight: 100;
+  float: left;
+  position: relative;
+  top: 42%;
+  font-size: 5rem;
+  color: #10CAEB;
+  left: 0%;
+  font-weight: 100;
+  margin: 0;
+  padding: 0;
 }
 
 /*field curtain functions*/
@@ -427,7 +430,7 @@ font-size: 1.5rem;
 
 
 .lamp{
-background: #0186FC;
+background: #0099AE;
 height: 100%;
 border: 0.1em solid #F1F1F1;
 }
@@ -511,6 +514,17 @@ font-weight: 100;
 transition: 0.9s;
 transform: scale(1.1,1.1);
 }
+#status_curtain{
+  position: relative;
+  left: 31%;
+  float: none;
+  top: 1%;
+  background: #0CCEF0;
+  padding: 1% 5% 1% 5%;
+  border-radius: 12px;
+  color: white;
+  font-size: x-large;
+}
 
 
 .tv{
@@ -527,23 +541,23 @@ width: 100%;
 
 
 .label_tv{
-font-size: 2rem;
-margin: 0;
-font-weight: 100;
-position: relative;
-top: 8.5%;
-left: 28%;
-padding: 0;
+  font-size: 3rem;
+  margin: 0;
+  font-weight: 100;
+  position: relative;
+  top: 30%;
+  left: 25%;
+  padding: 0;
 }
 
 
 .img-thumbnaill_tv{
-height: 75%;
-width: 75%;
-position: relative;
-left: 12%;
-top: 4%;
-display: inline-block;
+height: 70%;
+    width: 34%;
+    position: relative;
+    left: 10%;
+    top: 15%;
+    display: inline-block;
 }
 
 
@@ -656,16 +670,63 @@ transform: scale(1.1,1.1);
 cursor: pointer;
 }
 
-@media screen and (max-width: 800px){
-.titulo-cia {
-color: #AFAEAE;
-text-shadow: white 1.9px 0px;
-position: relative;
-left: 13%;
-top: 1rem;
-width: 60%;
-font-weight: 100;
-font-size: 3rem;
-text-align: -webkit-center;
-}
+@media screen and (max-width: 600px){
+  .titulo-cia {
+    color: #AFAEAE;
+    text-shadow: white 1.9px 0px;
+    position: relative;
+    left: 13%;
+    top: 1rem;
+    width: 60%;
+    font-weight: 100;
+    font-size: 3rem;
+    text-align: -webkit-center;
+  }
+  .temp_bathroom .tmper,
+  .temp_kitchen .tmper,
+  .temp_bedroom .tmper,
+  .temp_room .tmper{
+    top: 53%;
+    font-size: xx-large;
+  }
+  .temp_bathroom .icon_celsius, .temp_kitchen .icon_celsius, .temp_bedroom .icon_celsius, .temp_room .icon_celsius {
+    top: 53%;
+    font-size: xx-large;
+  }
+  .temp_bathroom img, .temp_kitchen img, .temp_bedroom img, .temp_room img {
+    top: 9%;
+  }
+  .temp_bathroom span, .temp_kitchen span, .temp_bedroom span, .temp_room span {
+    left: -38%;
+  }
+  .label_temp_out {
+    top: 15%;
+    font-size: xx-large;
+  }
+  .temp_label {
+    left: 0%;
+  }
+  .lab_med{
+    left: 57%;
+    top: 20%;
+  }
+  .img-thumbnaill_temp {
+    left: 11%;
+    height: 50%;
+    top: 17%;
+    width: 70%;
+  }
+  .label_ar {
+    font-size: x-large;
+    left: -4%%;
+    top: -26.5%;
+  }
+  #temperature_bedroom_front {
+    font-size: xx-large;
+  } 
+  .title_temp {
+    font-size: xx-large;
+    top: -30%;
+    left: 50%;
+  }
 }

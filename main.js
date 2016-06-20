@@ -1,9 +1,9 @@
 var express       = require('express.io'),
-    //child         = require('child_process'),
     Cylon         = require('cylon'),
     mongoose      = require("mongoose"),
     temper        = require('./models/temperature.js'),
     ExeStepper    = require('./models/stepper.js'),
+    televisor     = require('./models/tv_smart.js'),
     control_light = require('./models/lamps.js');
 
 app = express();
@@ -15,7 +15,7 @@ app.sensors = {};
 app.use(express.static(__dirname + '/public'));
 app.http().io();
 
-routes = require('./routes/smartroute.js')(app);
+//routes = require('./routes/smartroute.js')(app);
 /*Cylon.robot({
   connections: {
     galileo: {
@@ -31,7 +31,7 @@ routes = require('./routes/smartroute.js')(app);
     relay_bathroom: {driver: 'direct-pin',pin: 6},
     relay_kitchen: {driver: 'direct-pin',pin: 7},
     relay_room: {driver: 'direct-pin',pin: 8},
-    relay_room2: {driver: 'direct-pin',pin: 9},
+    relay_roomTwo: {driver: 'direct-pin',pin: 9},
     relay_bedroom: {driver: 'direct-pin',pin: 10}
   },
 
@@ -45,7 +45,7 @@ routes = require('./routes/smartroute.js')(app);
    relay_bathroom: my.relay_bathroom,
    relay_kitchen: my.relay_kitchen,
    relay_room: my.relay_room,
-   relay_room2: my.relay_room2,
+   relay_roomTwo: my.relay_roomTwo,
    relay_bedroom: my.relay_bedroom,
   };
     every((4).second(), function () {
@@ -78,7 +78,7 @@ app.relay_roomController = function () {
   control_light.roomOne();
 },
 
-app.relay_room2Controller = function () {
+app.relay_roomTwoController = function () {
   control_light.roomTwo();
 },
 
@@ -86,8 +86,22 @@ app.control_curtain = function () {
   ExeStepper.controlMotor();
 };
 
+app.televisor_on_off = function () {
+  televisor.control_tv();
+};
+
+app.televisor_increase = function () {
+  televisor.increase();
+};
+
+app.televisor_decrease = function () {
+  televisor.decrease();
+};
+
 control_light.socket_Lamps();
 
 ExeStepper.socket_curtain();
+
+televisor.socket_Televisor();
 
 console.log('Smart Home - C.I.A - 8245');

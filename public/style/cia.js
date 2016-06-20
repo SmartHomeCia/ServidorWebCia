@@ -39,32 +39,53 @@ socket.on('connect', function(data) {
     status();
  });
 
- socket.on('curtain_channel',function(data){
+  socket.on('lamp_All', function(lamps) {
+   if (lamps == "lampBathroom"){
+    acenderLampBathroom();
+   }else if (lamps == "lampKitchen"){
+    acenderLampkitchen();
+   }else if (lamps == "lampBedroom"){
+    acenderLampbedroom();
+   }else if (lamps == "lampRoomOne"){
+    acenderLamproomOne();
+   }else if (lamps == "lampRoomTwo"){
+    acenderLamproomTwo();
+   }else if(lamps == "lamp_All_Home"){
+    controlAllLamps();
+   }
+  });
+
+  socket.on('curtain_channel',function(data){
     data.sts_curtain == 0 ? document.getElementById("curtain_img").src = "img/cortina-fechada.png" : document.getElementById("curtain_img").src = "img/cortina-aberta.png";
     statusCurtain = data.sts_curtain;
   });
-});
 
-socket.on('lamp_All', function(lamps) {
- if (lamps == "lampBathroom"){
-  acenderLampBathroom();
- }else if (lamps == "lampKitchen"){
-    acenderLampkitchen();
- }else if (lamps == "lampBedroom"){
-    acenderLampbedroom();
- }else if (lamps == "lampRoomOne"){
-    acenderLamproomOne();
- }else if (lamps == "lampRoomTwo"){
-    acenderLamproomTwo();
- }else if(lamps == "lamp_All_Home"){
-    controlAllLamps();
- }
-});
+  socket.on('tv_connect',function(data){
+    tv = data.tv_status;
+    volume = data.volume_tv;
+    data.tv_status == 0 ? document.getElementById("tv_img").src = "img/tvciaOff.png" : document.getElementById("tv_img").src = "img/tvciaOn.png";
+    data.tv_status == 0 ? document.getElementById('collapse_tv').style.display = "none" : document.getElementById('collapse_tv').style.display = "block";
+    document.getElementById("volume_tv").innerHTML = volume;
+  });
+  socket.on('tv_function',function(tv_data){
+    if(tv_data == "tv_On_Off"){
+      activeTvCia();
+    }
+  });
 
-socket.on('curtain_func',function(curtain_data){
-  if(curtain_data == "control_Curtain"){
-    activeCurtain();
-  }
+  socket.on('tv_volume',function(tv_volume){
+    if(tv_volume == "increase"){
+      Increase();
+    }else if(tv_volume == "decrease"){
+      decrease();
+    }
+  });
+
+  socket.on('curtain_func',function(curtain_data){
+    if(curtain_data == "control_Curtain"){
+      activeCurtain();
+    }
+  });
 });
 
 //FUNÇAO LAMPADA bathroom
@@ -250,20 +271,32 @@ function activeTvCia() {
   }
 }
 
+function sendTvHome(){
+  socket.emit('tv_function', "tv_On_Off");
+}
+
 function Increase(){
-  if(volume >= 100){}
-  else{
+  if(volume < 100){
     volume++;
     document.getElementById("volume_tv").innerHTML = volume;
   }
 }
 
 function decrease(){
-  if(volume <= 0){}
-  else{
+  if(volume > 0){
     volume--;
     document.getElementById("volume_tv").innerHTML = volume;
   }
+}
+
+function sendVolume_Increase(){
+  console.log("envia Aumento");
+  socket.emit('tv_volume', "increase");
+}
+
+function sendVolume_Decrease(){
+  console.log("envia diminui");
+  socket.emit('tv_volume', "decrease");
 }
 
 //AR
@@ -299,10 +332,21 @@ function decrease_ar(){
 function block_device(id_device){
   document.getElementById(id_device).disabled = true;
   document.getElementById(id_device).style.cursor = "not-allowed";
+  if(id_device == "curtain_img"){
+    var nameStatus = document.getElementById("status_curtain").innerHTML;
+    if (nameStatus == "Cortina Fechada") {
+      nameStatus = "Cortina Aberta";
+      document.getElementById("status_curtain").innerHTML = "Cortina Abrindo";
+    }else {
+      nameStatus = "Cortina Fechada";
+      document.getElementById("status_curtain").innerHTML = "Cortina Fechando";
+    }  
+  }
   setTimeout(function(){ 
     document.getElementById(id_device).disabled = false;
     document.getElementById(id_device).style.cursor = "pointer";
-  }, 8000);
+    document.getElementById("status_curtain").innerHTML = nameStatus;
+  }, 20000);
 }
 
 //FUNÇÃO PARA BLOQUEAR EM 5 SEGUNDOS
