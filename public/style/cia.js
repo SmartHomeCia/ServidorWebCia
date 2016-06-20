@@ -324,11 +324,11 @@ function activeArCia() {
 }
 
 function sendVolume_IncreaseAr(){
-  socket.emit('ar_volume', "increaseAr");
+  socket.emit('ar_volume', "increase_Ar");
 }
 
 function sendVolume_DecreaseAr(){
-  socket.emit('ar_volume', "decreaseAr");
+  socket.emit('ar_volume', "decrease_Ar");
 }
 
 function sendArHome(){
