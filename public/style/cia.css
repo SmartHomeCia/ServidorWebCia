@@ -430,7 +430,7 @@ font-size: 1.5rem;
 
 
 .lamp{
-background: #0099AE;
+background: #0165F3;
 height: 100%;
 border: 0.1em solid #F1F1F1;
 }
@@ -541,15 +541,22 @@ width: 100%;
 
 
 .label_tv{
-  font-size: 3rem;
+  font-size: xx-large;
   margin: 0;
   font-weight: 100;
   position: relative;
-  top: 30%;
+  top: 3%;
   left: 25%;
   padding: 0;
 }
 
+#sts_tv{
+  position: relative;
+  top: 25%;
+  font-size: x-large;
+  left: -3.5%;
+  color: white;
+}
 
 .img-thumbnaill_tv{
 height: 70%;

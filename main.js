@@ -4,6 +4,7 @@ var express       = require('express.io'),
     temper        = require('./models/temperature.js'),
     ExeStepper    = require('./models/stepper.js'),
     televisor     = require('./models/tv_smart.js'),
+    ar            = require('./models/airconditioning.js'),
     control_light = require('./models/lamps.js');
 
 app = express();
@@ -98,10 +99,24 @@ app.televisor_decrease = function () {
   televisor.decrease();
 };
 
+app.ar_on_off = function () {
+  ar.control_ar();
+};
+
+app.ar_increase = function () {
+  ar.increase();
+};
+
+app.ar_decrease = function () {
+  ar.decrease();
+};
+
 control_light.socket_Lamps();
 
 ExeStepper.socket_curtain();
 
 televisor.socket_Televisor();
+
+ar.socket_AR();
 
 console.log('Smart Home - C.I.A - 8245');

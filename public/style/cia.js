@@ -49,7 +49,16 @@ socket.on('connect', function(data) {
     volume = data.volume_tv;
     data.tv_status == 0 ? document.getElementById("tv_img").src = "img/tvciaOff.png" : document.getElementById("tv_img").src = "img/tvciaOn.png";
     data.tv_status == 0 ? document.getElementById('collapse_tv').style.display = "none" : document.getElementById('collapse_tv').style.display = "block";
+    data.tv_status == 0 ? document.getElementById('sts_tv').innerHTML = "Desligada" : document.getElementById('sts_tv').innerHTML = "Ligada";
     document.getElementById("volume_tv").innerHTML = volume;
+  });
+
+  socket.on('ar_connect',function(data){
+    ar = data.ar_status;
+    volume_ar = data.volume_ar;
+    data.ar_status == 0 ? document.getElementById("ar_img").src = "img/ar_off.png" : document.getElementById("ar_img").src = "img/ar_on.png";
+    data.ar_status == 0 ? document.getElementById('collapse_ar').style.display = "none" : document.getElementById('collapse_ar').style.display = "block";
+    document.getElementById("volume_ar").innerHTML = volume_ar;
   });
 });
 
@@ -80,6 +89,20 @@ socket.on('connect', function(data) {
       Increase();
     }else if(tv_volume == "decrease"){
       decrease();
+    }
+  });
+
+  socket.on('ar_function',function(ar_data){
+    if(ar_data == "ar_On_Off"){
+      activeArCia();
+    }
+  });
+
+  socket.on('ar_volume',function(ar_volume){
+    if(ar_volume == "increase"){
+      Increase_ar();
+    }else if(ar_volume == "decrease"){
+      decrease_ar();
     }
   });
 
@@ -274,10 +297,12 @@ function activeTvCia() {
     tv = 1;
     btntvimg.src = "img/tvciaOn.png";
     document.getElementById('collapse_tv').style.display = "block";
+    document.getElementById('sts_tv').innerHTML = "Ligada";
  } else {
     tv = 0;
     btntvimg.src = "img/tvciaOff.png";
     document.getElementById('collapse_tv').style.display = "none";
+    document.getElementById('sts_tv').innerHTML = "Desligada";
   }
 }
 
@@ -286,7 +311,7 @@ function sendTvHome(){
 }
 
 function Increase(){
-  if(volume < 100){
+  if(volume < 50){
     volume++;
     document.getElementById("volume_tv").innerHTML = volume;
   }
@@ -324,11 +349,11 @@ function activeArCia() {
 }
 
 function sendVolume_IncreaseAr(){
-  socket.emit('ar_volume', "increase_Ar");
+  socket.emit('ar_volume', "increase");
 }
 
 function sendVolume_DecreaseAr(){
-  socket.emit('ar_volume', "decrease_Ar");
+  socket.emit('ar_volume', "decrease");
 }
 
 function sendArHome(){
@@ -336,21 +361,17 @@ function sendArHome(){
 }
 
 function Increase_ar(){
-  if(volume_ar >= 100){}
-  else{
+  if(volume_ar < 26){
     volume_ar++;
     document.getElementById("volume_ar").innerHTML = volume_ar;
-  }
 }
-
+}
 function decrease_ar(){
-  if(volume_ar <= 0){}
-  else{
+  if(volume_ar > 17){
     volume_ar--;
     document.getElementById("volume_ar").innerHTML = volume_ar;
-  }
 }
-
+}
 function block_device(id_device){
   document.getElementById(id_device).disabled = true;
   document.getElementById(id_device).style.cursor = "not-allowed";
