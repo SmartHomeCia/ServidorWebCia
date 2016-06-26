@@ -17,7 +17,7 @@ app.use(express.static(__dirname + '/public'));
 app.http().io();
 
 //routes = require('./routes/smartroute.js')(app);
-/*Cylon.robot({
+Cylon.robot({
   connections: {
     galileo: {
       adaptor: 'intel-iot'
@@ -53,7 +53,7 @@ app.http().io();
     app.tempBroadcast();
     });
   }
-}).start();*/
+}).start();
 
 app.tempBroadcast = function () {
   temper.temperature();
