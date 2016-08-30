@@ -29,7 +29,7 @@ text-shadow: white 1.9px 0px;
 float: left;
 position: relative;
 left: 24%;
-}                                                                                                     
+}
 }
 
 /*CORPO DA PAGINA*/
@@ -43,11 +43,11 @@ height: 630px;
 @media screen and (min-width: 768px){
 .container .jumbotron, .container-fluid .jumbotron {
 padding:0;
-}                                                                                                     
-}                                                                                                    
+}
+}
 
 /*CAMPO DAS FUNÇOES LAMPADAS*/
-.campo_funcionalidade{ 
+.campo_funcionalidade{
   position: relative;
   padding: 0;
   width: 30%;
@@ -55,7 +55,7 @@ padding:0;
   float: left;
   box-shadow: 0px 10px 10px 0px hsla(0, 0%, 0%, 0.23);
   margin: 0% 0% 2.5% 2.5%;
-}                                                                                           
+}
 
 .campo_funcionalidade input{
 width: 60%;
@@ -190,7 +190,7 @@ width: 100%;
   cursor: pointer;
   width: 25%;
   outline: none;
-  top: -1.2em;										
+  top: -1.2em;
 }
 
 .btn_{
@@ -232,7 +232,7 @@ width: 100%;
 
 .volume{
 	width: 20%;
-	display: inline-block; 
+	display: inline-block;
 }
 
 .volume span{
@@ -731,7 +731,7 @@ cursor: pointer;
   }
   #temperature_bedroom_front {
     font-size: xx-large;
-  } 
+  }
   .title_temp {
     font-size: xx-large;
     top: -30%;

@@ -30,7 +30,7 @@ exports.controlMotor = function(){
 
 exports.socket_curtain = function(){
   socket.on('connect', function (client) {
-  
+
   socket.emit('curtain_channel',{
     'sts_curtain':motor,
     'temp_motor':temp_motor

@@ -7,6 +7,6 @@ function runningStepper(direction){
     stepper.setDirection(direction);
     stepper.stepperSteps(steps);
 }
-runningStepper(Stepper_lib.ULN200XA.DIR_CW); 
+runningStepper(Stepper_lib.ULN200XA.DIR_CW);
 
 console.log("abriu cortina");

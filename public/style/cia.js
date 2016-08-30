@@ -34,7 +34,7 @@ socket.on('connect', function(data) {
       data.lampRoomOne == 0 ? statusLampOff("lamp1Sala") : statusLampOn("lamp1Sala");
       roomOne = data.lampRoomOne;
       data.lampRoomTwo == 0 ? statusLampOff("lamp2Sala") : statusLampOn("lamp2Sala");
-      roomTwo = data.lampRoomTwo;   
+      roomTwo = data.lampRoomTwo;
     }
     status();
  });
@@ -123,7 +123,7 @@ function acenderLampBathroom() {
   if (bathroom == 0) {
     bathroom = 1;
     connection_lamp_all += 1;
-    statusLampOn("lampbathroom"); 
+    statusLampOn("lampbathroom");
   } else {
     bathroom = 0;
     statusLampOff("lampbathroom");
@@ -289,11 +289,11 @@ function activeCurtain() {
     document.getElementById("status_curtain").innerHTML = "Cortina Fechando";
     nameStatus = "Cortina Fechada";
   }
-    setTimeout(function(){ 
+    setTimeout(function(){
     document.getElementById("status_curtain").innerHTML = nameStatus;
   }, 40000);
   block_device("curtain_img",40000);
-}  
+}
 
 function sendCurtain(){
   socket.emit('curtain_func',"control_Curtain");
@@ -388,7 +388,7 @@ function decrease_ar(){
 function block_device(id_device,temp_device){
   document.getElementById(id_device).disabled = true;
   document.getElementById(id_device).style.cursor = "not-allowed";
-  setTimeout(function(){ 
+  setTimeout(function(){
     document.getElementById(id_device).disabled = false;
     document.getElementById(id_device).style.cursor = "pointer";
   }, temp_device);
@@ -398,13 +398,13 @@ function block_device(id_device,temp_device){
 function block(id_func){
   if(id_func == "cmn-toggle-2"){
     document.getElementById("toogle_all").style.cursor = "not-allowed";
-    setTimeout(function(){ 
+    setTimeout(function(){
     document.getElementById("toogle_all").style.cursor = "pointer";
   }, 1000);
   }
   document.getElementById(id_func).disabled = true;
   document.getElementById(id_func).style.cursor = "not-allowed";
-  setTimeout(function(){ 
+  setTimeout(function(){
     document.getElementById(id_func).disabled = false;
     document.getElementById(id_func).style.cursor = "pointer";
   }, 1000);

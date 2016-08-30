@@ -20,9 +20,9 @@
     <script src="style/cia.js"></script>
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries  onload="seti()" -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-   
+
 </head>
-  <body ng-controller="SmartController" ng-init="init()">   
+  <body ng-controller="SmartController" ng-init="init()">
     <!-- MENU DA PAGINA PRINCIPAL -->
     <nav class="navbar navbar-default navbar-static-top">
        <img class="logo" src="img/logo.png">
@@ -39,10 +39,10 @@
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
               <h4 class="modal-title" id="myModalLabel">Controle da Iluminaç&atilde;o</h4>
                 <!--CAMPO DE TODAS AS LAMPADAS-->
-                <article class="campo_lamp_all">  
+                <article class="campo_lamp_all">
                    <div class="row">
                       <div class="switch">
-                        <input id="cmn-toggle-2" class="cmn-toggle cmn-toggle-round" type="checkbox" 
+                        <input id="cmn-toggle-2" class="cmn-toggle cmn-toggle-round" type="checkbox"
                         onclick="controlAllLamps(); sendLamp_All();">
                         <label id="toogle_all" for="cmn-toggle-2"></label>
                         <span>Todas</span>
@@ -103,7 +103,7 @@
             <div class="modal-body">
               <article class="campo_funcionalidade_TV cursor">
                 <figure>
-                  <input type="image" id="tv_img" src="img/tvciaOff.png" 
+                  <input type="image" id="tv_img" src="img/tvciaOff.png"
                   onclick="activeTvCia(); sendTvHome();" title="Televisor">
                 </figure>
               </article>
@@ -131,7 +131,7 @@
             </div>
             <div class="modal-body">
               <div id="myTabContent2" class="tab-content">
-                    <div class="col-md-12 temp_bathroom">  
+                    <div class="col-md-12 temp_bathroom">
                       <span id="temperature_bathroom" class="tmper">25º</span>
                       <span class="icon_celsius">C</span>
                       <span>Banheiro</span>
@@ -173,7 +173,7 @@
              <div id="myTabContent2" class="tab-content">
                <div class="curtain_field">
                  <figure class="curtain_space">
-                    <input type="image" id="curtain_img" class="cursor" src="img/cortina-fechada.png" 
+                    <input type="image" id="curtain_img" class="cursor" src="img/cortina-fechada.png"
                     onclick="activeCurtain(); sendCurtain();">
                  </figure>
                </div>
@@ -196,7 +196,7 @@
               <div class="modal-body">
                 <article class="campo_funcionalidade_TV cursor">
                   <figure>
-                    <input type="image" id="ar_img" src="img/ar_off.png" 
+                    <input type="image" id="ar_img" src="img/ar_off.png"
                     onclick="activeArCia(); sendArHome();">
                   </figure>
                 </article>
@@ -228,8 +228,8 @@
              <div class="temperature">
               <label class="label temp_label">Temperatura</label>
               <span id="temperature_media" class="label label_temp_out">23°C</span><span class="label lab_med">Média</span>
-              <img src="img/tempicone.png" class="img-thumbnaill_temp"> 
-             </div>  
+              <img src="img/tempicone.png" class="img-thumbnaill_temp">
+             </div>
             </div>
             <!--Cortina-->
             <div class="col-md-3 curtain" data-toggle="modal" data-target="#myModalcortina" title="Cortina">
@@ -256,7 +256,7 @@
                 <span class="title_temp">Quarto</span>
                 <label class="label label_ar">Ar-Condicionado</label>
               </div>
-            </div> 
+            </div>
           </div>
       </div>
       <script src="style/JS/html5.js"></script>
